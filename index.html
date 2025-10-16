@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previdência Social: Seu Futuro Começa aos 16</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .slides-container {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+        
+        .slide-content {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #2575fc;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #6a11cb;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        ul {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+        
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #2575fc;
+        }
+        
+        .example-box {
+            background: #f0f8ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .step-number {
+            background: #2575fc;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .image-container {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .image-placeholder {
+            width: 200px;
+            height: 150px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+        }
+        
+        .nav-btn {
+            background: #2575fc;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #6a11cb;
+            transform: translateY(-3px);
+        }
+        
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.8);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 100;
+        }
+        
+        .colorful-bg {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+        }
+        
+        .colorful-bg-2 {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+        
+        .colorful-bg-3 {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .colorful-bg-4 {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .conclusion h1, .conclusion h2 {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .slide {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-counter">Slide 1 de 10</div>
+    
+    <div class="slides-container">
+        <!-- Slide 1: Capa -->
+        <div class="slide active colorful-bg">
+            <div class="slide-content">
+                <h1>Previdência Social: Seu Futuro Começa aos 16</h1>
+                <h2>Um Guia Prático sobre INSS, Contribuição e Seus Direitos</h2>
+                <div class="image-container">
+                    <div class="image-placeholder">Jovem sorrindo</div>
+                    <div class="image-placeholder">Cofrinho</div>
+                    <div class="image-placeholder">Gráfico de crescimento</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 2: O que é o INSS? -->
+        <div class="slide colorful-bg-2">
+            <div class="slide-content">
+                <h1>O "Seguro Social" do Trabalhador</h1>
+                <div class="card">
+                    <ul>
+                        <li>O INSS (Instituto Nacional do Seguro Social) é um sistema de seguro <span class="highlight">obrigatório</span> (para quem trabalha) ou <span class="highlight">voluntário</span> (para quem não trabalha).</li>
+                        <li>É como um grande "cofrinho" nacional onde todos contribuem para garantir a renda uns dos outros no futuro.</li>
+                        <li><span class="highlight">Objetivo:</span> Garantir uma renda quando você não puder trabalhar (por idade, doença, acidente, etc.).</li>
+                    </ul>
+                </div>
+                <div class="image-container">
+                    <div class="image-placeholder">Imagem ilustrativa de seguro social</div>
+                    <div class="image-placeholder">Cofrinho nacional</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Benefícios Imediatos para Jovens -->
+        <div class="slide colorful-bg-3">
+            <div class="slide-content">
+                <h1>O Que o INSS Garante HOJE?</h1>
+                <div class="card">
+                    <ul>
+                        <li><span class="highlight">Auxílio por Incapacidade Temporária:</span> (Antigo Auxílio-Doença) Se você ficar doente ou sofrer um acidente grave e precisar se afastar do trabalho/estudos.</li>
+                        <li><span class="highlight">Salário-Maternidade:</span> Para a jovem que engravidar e precisar se afastar do trabalho/contribuição.</li>
+                        <li><span class="highlight">Pensão por Morte:</span> Garante uma renda para seus dependentes (familiares) caso você venha a faltar.</li>
+                    </ul>
+                </div>
+                <p class="highlight">Todos esses benefícios exigem que você tenha um tempo mínimo de contribuição (carência)!</p>
+                <div class="image-container">
+                    <div class="image-placeholder">Ícone de saúde</div>
+                    <div class="image-placeholder">Ícone de família</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Seu Caminho no INSS aos 16 Anos -->
+        <div class="slide colorful-bg-4">
+            <div class="slide-content">
+                <h1>Dois Jeitos de Contribuir</h1>
+                
+                <div class="card">
+                    <h2>1. SEGURO OBRIGATÓRIO (Jovem Aprendiz)</h2>
+                    <ul>
+                        <li>Você está trabalhando com carteira assinada (Jovem Aprendiz, a partir de 14 anos).</li>
+                        <li>A empresa desconta e repassa o INSS automaticamente.</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2>2. SEGURADO FACULTATIVO (Estudante)</h2>
+                    <ul>
+                        <li>Você não tem emprego formal, mas quer contribuir (a partir de 16 anos).</li>
+                        <li>Você paga a guia (GPS) por conta própria.</li>
+                    </ul>
+                </div>
+                
+                <p class="highlight">O objetivo é sempre registrar tempo de contribuição.</p>
+                <div class="image-container">
+                    <div class="image-placeholder">Jovem Aprendiz</div>
+                    <div class="image-placeholder">Estudante</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Exemplo Prático 1: Jovem Aprendiz -->
+        <div class="slide colorful-bg">
+            <div class="slide-content">
+                <h1>Jovem Aprendiz: Contribuição Automática</h1>
+                
+                <div class="example-box">
+                    <h2>CENÁRIO: Maria, 16 anos, é Aprendiz. Salário Mensal: R$ 880,00</h2>
+                    
+                    <h3>CÁLCULO SIMPLIFICADO:</h3>
+                    <ul>
+                        <li>Alíquota INSS: 7,5% (descontado do seu salário)</li>
+                        <li>Desconto: R$ 880,00 x 7,5% = <span class="highlight">R$ 66,00</span></li>
+                    </ul>
+                    
+                    <h3>RESULTADO:</h3>
+                    <p>A empresa desconta R$ 66,00. O mês é <span class="highlight">CONTADO</span> para a aposentadoria e Maria tem direito aos benefícios do INSS!</p>
+                </div>
+                
+                <div class="image-container">
+                    <div class="image-placeholder">Cálculo matemático</div>
+                    <div class="image-placeholder">Jovem aprendiz feliz</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Exemplo Prático 2: Estudante Facultativo -->
+        <div class="slide colorful-bg-2">
+            <div class="slide-content">
+                <h1>Estudante: Contribuindo por Opção</h1>
+                
+                <div class="example-box">
+                    <h2>CENÁRIO: João, 16 anos, só estuda, mas quer "adiantar" a aposentadoria.</h2>
+                    
+                    <h3>BASE DE CÁLCULO:</h3>
+                    <p>Sempre sobre o Salário Mínimo (SM). Exemplo de SM: R$ 1.412,00 (2024).</p>
+                    
+                    <h3>OPÇÕES DE PAGAMENTO (CÓDIGO 1473):</h3>
+                    <ul>
+                        <li>Plano Simplificado (11% do SM): R$ 1.412,00 x 11% = <span class="highlight">R$ 155,32/mês</span></li>
+                    </ul>
+                    
+                    <h3>RESULTADO:</h3>
+                    <p>João paga a guia (GPS) todo mês e garante <span class="highlight">1 mês de contribuição</span> para o futuro.</p>
+                </div>
+                
+                <div class="image-container">
+                    <div class="image-placeholder">Estudante pagando guia</div>
+                    <div class="image-placeholder">GPS do INSS</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 7: A Magia do Tempo: Começar Cedo -->
+        <div class="slide colorful-bg-3">
+            <div class="slide-content">
+                <h1>Aposentadoria: O Tempo é Seu Maior Aliado</h1>
+                
+                <div class="card">
+                    <h2>REQUISITOS (Novas Regras):</h2>
+                    <ul>
+                        <li><span class="highlight">Homens:</span> Mínimo de 20 anos de contribuição (e 65 anos de idade).</li>
+                        <li><span class="highlight">Mulheres:</span> Mínimo de 15 anos de contribuição (e 62 anos de idade).</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2>O PODER DO INÍCIO:</h2>
+                    <ul>
+                        <li>Se você começar aos 16 e parar de contribuir aos 36, você já terá os <span class="highlight">20 anos de contribuição mínimos</span> (para Homens)!</li>
+                        <li>Você garante os requisitos básicos muito antes e <span class="highlight">potencializa o valor</span> da sua futura aposentadoria.</li>
+                    </ul>
+                </div>
+                
+                <div class="image-container">
+                    <div class="image-placeholder">Gráfico de crescimento exponencial</div>
+                    <div class="image-placeholder">Relógio</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Como se Inscrever (Se for Facultativo) -->
+        <div class="slide colorful-bg-4">
+            <div class="slide-content">
+                <h1>Passos para a Inscrição (A partir de 16 anos)</h1>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <p>Acesse o site ou aplicativo <span class="highlight">Meu INSS</span>.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <p>Clique em <span class="highlight">"Inscrever no INSS"</span>.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <p>Siga as instruções para gerar seu número de identificação: <span class="highlight">NIT/PIS/PASEP</span>.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <p>Use o NIT/PIS/PASEP para emitir a guia de pagamento (GPS) e pagar no banco/lotérica.</p>
+                </div>
+                
+                <div class="image-container">
+                    <div class="image-placeholder">Tela do Meu INSS</div>
+                    <div class="image-placeholder">GPS sendo pago</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Fique Atento! (Dica Importante) -->
+        <div class="slide colorful-bg">
+            <div class="slide-content">
+                <h1>Verifique Suas Contribuições!</h1>
+                
+                <div class="card">
+                    <h2>DICA 1 (Aprendiz):</h2>
+                    <p>Confira sempre seu extrato de contribuições (o CNIS) no Meu INSS para garantir que a empresa está repassando o valor corretamente.</p>
+                </div>
+                
+                <div class="card">
+                    <h2>DICA 2 (Facultativo):</h2>
+                    <p>Contribuições abaixo do Salário Mínimo (SM) não contam para o tempo de aposentadoria! (Exceto em alguns casos como o Jovem Aprendiz). Verifique se o valor que você paga está correto.</p>
+                </div>
+                
+                <div class="image-container">
+                    <div class="image-placeholder">Ícone de lupa</div>
+                    <div class="image-placeholder">Ícone de aviso</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 10: Conclusão e Dúvidas -->
+        <div class="slide conclusion">
+            <div class="slide-content">
+                <h1>Seu Futuro é Sua Responsabilidade!</h1>
+                
+                <div class="card" style="background: rgba(255,255,255,0.9); color: #333;">
+                    <p><span class="highlight">MENSAGEM FINAL:</span> Não espere a idade adulta. Começar a planejar sua segurança social e financeira agora é o maior investimento que você pode fazer.</p>
+                </div>
+                
+                <h2>PERGUNTAS?</h2>
+                <p>Deixe um espaço aberto para perguntas e respostas.</p>
+                
+                <div class="image-container">
+                    <div class="image-placeholder">Pessoas fazendo perguntas</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn">Anterior</button>
+        <button class="nav-btn" id="next-btn">Próximo</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const slideCounter = document.querySelector('.slide-counter');
+            
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                // Esconde todos os slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Mostra o slide atual
+                slides[index].classList.add('active');
+                
+                // Atualiza o contador
+                slideCounter.textContent = `Slide ${index + 1} de ${slides.length}`;
+                
+                // Atualiza estado dos botões
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === slides.length - 1;
+            }
+            
+            // Navegação para o próximo slide
+            nextBtn.addEventListener('click', function() {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+            
+            // Navegação para o slide anterior
+            prevBtn.addEventListener('click', function() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+            
+            // Navegação por teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    if (currentSlide < slides.length - 1) {
+                        currentSlide++;
+                        showSlide(currentSlide);
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        showSlide(currentSlide);
+                    }
+                }
+            });
+            
+            // Inicializa a apresentação
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
